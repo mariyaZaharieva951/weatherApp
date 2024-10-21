@@ -11,6 +11,7 @@ export default function SearchComponent({onSearch} : { onSearch: (city: string) 
         if (city) {
           onSearch(city);
         }
+        console.log(city)
       };
 
     return (
