@@ -8,12 +8,9 @@ export default function Home() {
   const [error, setError] = useState<string | null>(null);
 
   const handleSearch = async (city: string) => {
-    console.log(city)
+    
     const res = await fetch(`/api/weather?city=${city}`);
-  
-    console.log(res)
-  
-
+   
     setError(null);
 
     if(res.ok) {
