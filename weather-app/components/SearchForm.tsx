@@ -18,7 +18,7 @@ export default function SearchComponent({onSearch} : { onSearch: (city: string) 
     
         <form onSubmit={handleSubmit}>
             <input
-            className='border-2 border-black rounded-lg m-1 p-1'
+            className='border-2 border-gray-500 bg-slate-100 rounded-lg m-1 p-2 text-sm'
             type='text'
             value={city}
             onChange={(e) => setCity(e.target.value)}
@@ -26,7 +26,7 @@ export default function SearchComponent({onSearch} : { onSearch: (city: string) 
     
             />
     
-            <button type='submit' className='border-2 border-gray bg-slate-100 rounded-lg m-1 p-1 text-base'>Search</button>
+            <button type='submit' className='border-2 border-gray-500 bg-slate-100 rounded-lg m-1 p-2 text-sm text-gray-600'>Search</button>
         </form>
         
     )
