@@ -6,9 +6,9 @@ export default function WeatherInfo ( { weather }: { weather: any}) {
 
     return (
         <div>
-            <h2>Weather in {weather.name}</h2>
-            <p>Temperature: {weather}</p>
-            <p>Condition: {weather}</p>
+            {/* <h2>Weather in {weatherData}</h2>
+            <p>Temperature: {weatherData}</p>
+            <p>Condition: {weatherData}</p> */}
         </div>
     )
 
