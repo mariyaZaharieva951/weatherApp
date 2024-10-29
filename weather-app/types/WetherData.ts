@@ -10,3 +10,11 @@ export interface ForecastData {
 export interface WeatherData {
     [cityName: string]: ForecastData[];
   }
+
+export interface ForecastItem {
+    dt: number; 
+    main: {
+      temp: number; 
+      feels_like: number; 
+    };
+  }
