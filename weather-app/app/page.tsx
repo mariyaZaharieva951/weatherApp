@@ -3,14 +3,11 @@
 import { useState, useEffect } from "react";
 import SearchComponent from "../components/SearchForm"
 import WeatherInfo from "../components/WeatherInfo";
+import { WeatherData } from "../types/WetherData";
+import { City } from "../types/City";
 import WeatherMap from "@/components/WeatherMap";
 
-interface WeatherData {
-  [cityName: string]: {
-    temp: number;
-    feels_like: number;
-  };
-}
+
 
 
 export default function Home() {
@@ -56,13 +53,18 @@ const handleSearch = async (city: string) => {
 
   if (res.ok) {
     const data = await res.json();
+     if(data.main && typeof data.main.temp === "number" && typeof data.main.feels_like === "number") {
+      setWeatherData((prevData:any) => ({
+        ...prevData,
+        [city]: {
+          temp: data.main.temp,
+          feels_like: data.main.feels_like,
+        },
+      }));
+     }else {
+      setError("Неуспешно зареждане на температурните данни.");
+    }
     
-    setWeatherData({
-      [city]: {
-        temp: data.main.temp,
-        feels_like: data.main.feels_like,
-      },
-    });
   } else {
     const errorData = await res.json();
     setError(errorData.error);
