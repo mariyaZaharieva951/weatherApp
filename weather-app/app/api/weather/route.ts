@@ -10,9 +10,19 @@ export async function GET(request: Request) {
   if (!city) {
     return NextResponse.json({ error: 'City is required' }, { status: 400 });
   }
+
+  const geocodeResponse = await fetch(
+    `http://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(city)}&limit=1&appid=${apiKey}`
+  );
+
+  if (geocodeResponse.ok) {
+    const geocodeData = await geocodeResponse.json();
+    if (geocodeData.length > 0) {
+      const { lat, lon } = geocodeData[0];
+  
   
   const response = await fetch(
-    `http://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&appid=${apiKey}&units=metric`
+    `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`
   );
 
   if (response.ok) {
@@ -22,3 +32,4 @@ export async function GET(request: Request) {
     return NextResponse.json({ error: 'City not found' }, { status: 404 });
   }
 }
+}}
